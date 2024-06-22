@@ -1,0 +1,19 @@
+services:
+
+  nsse.main.internal:
+    container_name: nsse.main.internal
+    image: nsse/main
+    ports:
+      - 5000:443
+    build:
+      context: .
+      dockerfile: src/services/NotSoSimpleEcommerce.Main/Dockerfile
+    env_file:
+      - ./.env
+    volumes:
+      - ${CERTIFICATES_HOST_PATH}:${CERTIFICATES_CONTAINER_PATH}
+      - ${AWS_CREDENTIALS_HOST_PATH}:${AWS_CREDENTIALS_CONTAINER_PATH}
+      - ${MONGO_CERTIFICATE_HOST_PATH}:${MONGO_CERTIFICATE_CONTAINER_PATH}
+
+
+  
